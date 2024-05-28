@@ -30,7 +30,7 @@ function Login() {
       };
 
       axios
-        .post("http://localhost:3000/users/fatchuser", data)
+        .post("http://localhost:4000/users/fatchuser", data)
         .then((response) => {
           console.log(response);
           alert(`Welcome back! ${response.data.email}`);

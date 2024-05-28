@@ -1,6 +1,22 @@
 const { where } = require("sequelize");
-const { model, Sequelize } = require("../models/index");
+const { model, Sequelize, User } = require("../models/index");
 const { authHash, createToken, compareHash } = require("./auth/auth");
+
+
+
+
+const getAllUsers = async () => {
+  try {
+    // Truy vấn để lấy tất cả người dùng từ cơ sở dữ liệu
+    const users = await User.findAll(); // Sử dụng User thay vì user
+    return users;
+  } catch (error) {
+    console.error('Lỗi khi lấy danh sách người dùng:', error);
+    throw new Error('Không thể lấy danh sách người dùng');
+  }
+};
+
+
 
 const fatchUser = async (value) => {
   try {
@@ -50,4 +66,9 @@ const createUser = async (data) => {
 const updateUser = async () => {};
 const deleteUser = async () => {};
 
-module.exports = { fatchUser, createUser, updateUser, deleteUser };
+module.exports = { fatchUser, createUser, updateUser, deleteUser, getAllUsers };
+
+
+
+
+

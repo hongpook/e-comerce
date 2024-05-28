@@ -1,5 +1,18 @@
-const userService = require("../services/userServices");
+
 const AllValidation = require("../validation/AllValidation");
+
+const userService = require('../services/userServices');
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await userService.getAllUsers();
+    return res.status(200).json({ users });
+  } catch (error) {
+    console.error('Lỗi khi lấy danh sách người dùng:', error);
+    return res.status(500).json({ message: 'Lỗi máy chủ nội bộ' });
+  }
+};
+
 
 const fatchUser = async (req, res) => {
   try {
@@ -41,4 +54,7 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {};
 const deleteUser = async (req, res) => {};
 
-module.exports = { fatchUser, createUser, updateUser, deleteUser };
+module.exports = { fatchUser, createUser, updateUser, deleteUser, getAllUsers};
+
+
+

@@ -1,9 +1,10 @@
 var express = require("express");
-var router = express.Router();
-const { createUser, fatchUser } = require("../controller/userController");
+const router = express.Router();
+const userController = require('../controller/userController');
 
 /* GET users listing. */
-router.post("/createuser", createUser);
-router.post("/fatchuser", fatchUser);
+router.get('/allUsers', userController.getAllUsers);
+router.post("/createuser", userController.createUser);
+router.post("/fatchuser", userController.fatchUser);
 
 module.exports = router;

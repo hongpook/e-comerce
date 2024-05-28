@@ -9,11 +9,11 @@ module.exports = {
   //   "host": process.env.host,
   //   "dialect": process.env.dialect,
 
-  "database": "EccWork",
+  "database": "shop_management",
   "username": "postgres",
-  "password": "Lov@uamina1",
+  "password": "12345",
   "host": "localhost",
-  "port": 5432,
+  "port": 5433,
   "dialect": "postgres"
   },
 };

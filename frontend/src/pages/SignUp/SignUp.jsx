@@ -51,7 +51,7 @@ function SignUp() {
       };
 
       axios
-        .post("http://localhost:3000/users/createuser", data)
+        .post("http://localhost:4000/createuser", data)
         .then((response) => {
           console.log(response);
           navigate("/login");

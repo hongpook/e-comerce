@@ -5,7 +5,7 @@
  */
 
 var app = require("../app");
-var debug = require("debug")("backend:server");
+const debug = require("debug")("backend:server");
 var http = require("http");
 
 
@@ -13,7 +13,7 @@ var http = require("http");
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || "3000");
+var port = normalizePort(process.env.PORT || "4000");
 app.set("port", port);
 
 var { Sequelize } = require("../models/index");
@@ -92,3 +92,36 @@ function onListening() {
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
 }
+
+
+// const express = require('express');
+// const http = require('http');
+// const userRoutes = require('../routes/users');
+// const { Sequelize } = require('../models');
+
+// const app = express();
+// const port = process.env.PORT || 4000;
+
+// app.use(express.json());
+// app.use('/api', userRoutes);
+
+// const server = http.createServer(app);
+
+// Sequelize.sync()
+//   .then(() => {
+//     console.log("Database synchronized successfully");
+//     server.listen(port, () => {
+//       console.log(`Server is running on port ${port}`);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Error synchronizing the database: ", error);
+//   });
+
+// server.on("error", (error) => {
+//   console.error('Server error:', error);
+// });
+
+// server.on("listening", () => {
+//   console.log(`Listening on port ${port}`);
+// });
