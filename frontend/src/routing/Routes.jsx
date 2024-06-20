@@ -13,6 +13,10 @@ import ErrorPage from "../pages/ErrPage/ErrorPage.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import Checkout from "../pages/Checkout/Checkout.jsx";
 import Fproduct from "../components/Fproduct/Fproduct.jsx";
+import ProductList from "../components/productList/productList.jsx";
+
+import Blogs from "../pages/Blogs/Blogs.jsx";
+
 
 function MyRoutes() {
   return (
@@ -41,11 +45,14 @@ function MyRoutes() {
                 <Route path="3" element={<h1>elment 3</h1>} /> */}
           </Route>
           <Route path="about" element={<About />} />
+          <Route path="blogs" element={<Blogs />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+          
         </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<SignUp />} />
+        <Route path="/test" element={<ProductList />} />
       </Routes>
     </>
   );

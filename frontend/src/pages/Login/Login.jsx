@@ -6,6 +6,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as Yup from "yup";
 import authContext from "../../store/store";
+import "./style.scss";
+import Footer from "../../components/Footer/Footer.jsx";
 
 function Login() {
   const navigate = useNavigate();
@@ -61,61 +63,73 @@ function Login() {
   }, []);
 
   return (
-    <div className="bg-slate-600 text-white text-center h-screen flex justify-center items-center max-md:h-auto">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        <Form>
-          <h1 className="flex my-8 backdrop-blur-sm bg-white/30 p-4 max-lg:m-4 justify-center text-2xl font-thin">
-            CRESCENDO
-          </h1>
-          <div className="flex text-black justify-center ">
-            <div className="py-8 p-1 flex flex-col">
-              <p className=" text-red-500">
-                {" "}
-                <ErrorMessage name="email" />
-              </p>
+    <>
+    
+      <div className="login text-white text-center h-screen flex justify-center items-center max-md:h-auto mt-10">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          <Form>
+            <h1 className="flex my-8 backdrop-blur-sm bg-white/30 p-4 max-lg:m-4 justify-center text-2xl font-thin">
+              Login
+            </h1>
+            <div className="flex text-black justify-center ">
+              <div className="py-8 p-1 flex flex-col">
+                <Field
+                  type="email"
+                  name="email"
+                  id="email"
+                  className=" outline-none p-2"
+                  placeholder="Email"
+                />
+                <p className=" text-red-500">
+                  {" "}
+                  <ErrorMessage name="email" />
+                </p>
+              </div>
 
-              <Field
-                type="email"
-                name="email"
-                id="email"
-                className=" outline-none p-2"
-                placeholder="Email"
-              />
+              <div className="py-8 p-1 flex flex-col">
+                <Field
+                  type="password"
+                  name="password"
+                  id="password"
+                  className=" outline-none p-2 "
+                  placeholder="Password"
+                />
+                <p className=" text-red-500">
+                  {" "}
+                  <ErrorMessage name="password" />
+                </p>
+              </div>
             </div>
-
-            <div className="py-8 p-1 flex flex-col">
-              <p className=" text-red-500">
-                {" "}
-                <ErrorMessage name="password" />
-              </p>
-              <Field
-                type="password"
-                name="password"
-                id="password"
-                className=" outline-none p-2 "
-                placeholder="Password"
-              />
-            </div>
-          </div>
-          <button
-            type="submit"
-            className=" m-8 backdrop-blur-sm bg-white/30 py-4 p-6 max-lg:m-4 hover:bg-white/50"
-          >
-            Login
-          </button>
-          <p className="mt-12">
-            Don't have an account? &nbsp;
-            <NavLink to="/signup" className=" text-red-500">
-              Sign Up
-            </NavLink>
-          </p>
-        </Form>
-      </Formik>
-    </div>
+            <button
+              type="submit"
+              className=" m-8 backdrop-blur-sm bg-white/30 py-4 p-6 max-lg:m-4 hover:bg-white/50"
+            >
+              Login
+            </button>
+            <p className="mt-12">
+              Don't have an account? &nbsp;
+              <NavLink to="/signup" className=" text-red-500">
+                Sign Up
+              </NavLink>
+            </p>
+            <p>
+              Or
+            </p> 
+            <p className="">
+              If you're a Admin? &nbsp;
+              <NavLink to="/signup" className=" text-red-500">
+                Login for Admin
+              </NavLink>
+            </p>
+          </Form>
+        </Formik>
+      </div>
+      <Footer/>
+    </>
   );
 }
 

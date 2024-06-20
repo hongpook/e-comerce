@@ -1,59 +1,68 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faShoppingCart,
-  faUser,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import './style.scss';
+
 
 function BuySteps() {
   return (
     <>
-      <div className=" w-10/12 container m-auto  text-white pb-6 bg-gradient-to-r from-blue-900 to-blue-400  rounded-3xl  ">
-        <div className="p-4 pt-12 text-center ">
-          <FontAwesomeIcon
-            icon={faShoppingCart}
-            className="text-2xl m-2 text-black"
-          />
-          <h1 className="text-2xl   font-medium">Buy Steps</h1>
+
+<section class="categories spad">
+        <div class="container m-auto">
+          <div class="flex justify-between">
+            <div class="col-lg-3">
+              <div class="categories__text">
+                <h2>
+                  Clothings Hot <br /> <span>Shoe Collection</span> <br />{" "}
+                  Accessories
+                </h2>
+              </div>
+            </div>
+            <div class=" w-80">
+              <div class="categories__hot__deal">
+                <img
+                  src={'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9755a662d7234c6f95ad162746caa244_9366/Giay_Trainer_Samba_Low_mau_xanh_la_ID3263_04_standard.jpg'}
+                  alt=""
+                />
+                <div class="hot__deal__sticker">
+                  <span>Sale Of</span>
+                  <h5>$29.99</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+              <div class="categories__deal__countdown">
+                <span>Deal Of The Week</span>
+                <h2>Multi-pocket Chest Bag Black</h2>
+                <div class="categories__deal__countdown__timer" id="countdown">
+                  <div class="cd-item">
+                    <span>3</span>
+                    <p>Days</p>
+                  </div>
+                  <div class="cd-item">
+                    <span>1</span>
+                    <p>Hours</p>
+                  </div>
+                  <div class="cd-item">
+                    <span>50</span>
+                    <p>Minutes</p>
+                  </div>
+                  <div class="cd-item">
+                    <span>18</span>
+                    <p>Seconds</p>
+                  </div>
+                </div>
+                <NavLink
+                  to="/products"
+                  className="p-2  bg-black text-white hover:bg-gradient-to-r from-cyan-500 to-blue-500 duration-300"
+                >
+                  Shop now
+                </NavLink>
+              </div>
+            </div>
+          </div>
         </div>
-        <p className=" p-3 text-center text-2xl font-medium">
-          Follow these steps to buy our products
-        </p>
-        <div className=" flex justify-between text-center m-20">
-          <div className="w-60">
-            <FontAwesomeIcon
-              icon={faSearch}
-              className="text-2xl m-2 text-black animate-bounce cursor-pointer"
-            />
-            <h1 className="text-2xl  font-medium">Choose product</h1>
-            <p className="  text-black  font-medium p-3">
-              Choose your product and click on the buy now button
-            </p>
-          </div>
-          <div className="w-60">
-            <FontAwesomeIcon
-              icon={faUser}
-              className="text-2xl m-2 text-black animate-bounce cursor-pointer"
-            />
-            <h1 className="text-2xl  font-medium">Enter details</h1>
-            <p className="   text-black  font-medium p-3">
-              Enter your details and click on the buy now button
-            </p>
-          </div>
-          <div className="w-60">
-            <FontAwesomeIcon
-              icon={faShoppingCart}
-              className="text-2xl m-2 text-black animate-bounce cursor-pointer "
-            />
-            <h1 className="text-2xl   font-medium">Make a payment</h1>
-            <p className="   text-black   font-medium p-3">
-              Choose your payment method and click on the buy now button
-            </p>
-          </div>
-        </div>
-      </div>
+      </section>
     </>
   );
 }

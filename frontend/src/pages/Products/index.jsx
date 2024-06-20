@@ -1,54 +1,44 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-// import ProductCart from './../../components/ProductCart';
 import ProductCart from "../../components/ProductCart";
-import shopBanner from "../../images/shopBanner.jpg";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import '../../assets/styles/style/pagination.css';
+import './style.scss';
+import Footer from "../../components/Footer/Footer.jsx";
 
 const Products = () => {
   const [product, setProduct] = useState([]);
-  const [FilterArray, setFilterArray] = useState([]);
-  const [LoadMore, setLoadMore] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(2); // Số lượng sản phẩm trên mỗi trang
   const [search, setSearch] = useState("");
+  const [FilterArray, setFilterArray] = useState([]);
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
 
-  async function fatch() {
+  async function fetchProducts() {
     try {
-      const data = await axios.get("https://fakestoreapi.com/products");
-      setProduct(data.data.sort(compareName));
-      setFilterArray(data.data.sort(compareName));
-      console.log(data.data);
+      const data = await axios.get("http://localhost:4000/products/allProduct");
+      const sortedData = data.data.sort(compareName);
+      setProduct(sortedData);
+      setFilterArray(sortedData);
     } catch (error) {
       console.log(error);
     }
   }
 
   useEffect(() => {
-    fatch();
+    fetchProducts();
   }, []);
+
   useEffect(() => {
-    let filteredArr = product;
-    if (search !== "") {
-      filteredArr = product.filter((item) => {
-        return item.title.toLowerCase().includes(search.toLowerCase());
-      });
-    }
-    if (min !== "") {
-      filteredArr = filteredArr.filter((item) => {
-        return item.price >= min;
-      });
-    }
-    if (max !== "") {
-      filteredArr = filteredArr.filter((item) => {
-        return item.price <= max;
-      });
-    }
-    setFilterArray(filteredArr);
+    filterProducts();
+    setCurrentPage(1); // Đặt lại trang hiện tại về 1 khi search hoặc thay đổi bộ lọc
   }, [search, min, max]);
+
   function compareName(a, b) {
-    const name1 = a.title.toUpperCase();
-    const name2 = b.title.toUpperCase();
+    const name1 = a.ProductName.toUpperCase();
+    const name2 = b.ProductName.toUpperCase();
 
     let comparison = 0;
 
@@ -60,72 +50,136 @@ const Products = () => {
     return comparison;
   }
 
+  const filterProducts = () => {
+    let filtered = product;
+
+    if (search) {
+      filtered = filtered.filter((item) =>
+        item.ProductName.toUpperCase().includes(search.toUpperCase())
+      );
+    }
+
+    if (min !== "") {
+      filtered = filtered.filter((item) => item.ProductPrice >= parseFloat(min));
+    }
+
+    if (max !== "") {
+      filtered = filtered.filter((item) => item.ProductPrice <= parseFloat(max));
+    }
+
+    setFilterArray(filtered);
+  };
+
+  // Tính chỉ số sản phẩm đầu tiên và cuối cùng trên trang hiện tại
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = FilterArray.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Chuyển trang
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       <Outlet />
-      <div className=" bg-slate-300 h-full flex flex-col justify-center  items-center  mt-12 min-h-screen ">
-        <div className="flex items-center justify-center ">
-          {/* <img src={shopBanner} alt="" className="rounded-3xl p-4"/> */}
-        </div>
-        <div className="h-20 flex items-center text-3xl justify-center flex-col ">
-          <h1 className="">Products</h1>
-        </div>
-        <div className="flex flex-col">
-          <input
-            type="search"
-            className=" outline-none w-80 p-2 m-2"
-            placeholder="Serach Products"
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-          />
-          <div>
-            <input
-              type="number"
-              placeholder="MIN"
-              className=" outline-none  w-36 p-2 m-2"
-              onChange={(e) => setMin(e.target.value)}
-              value={min}
-            />
-            <input
-              type="number"
-              placeholder="MAX"
-              className=" outline-none w-40 p-2 m-2"
-              onChange={(e) => setMax(e.target.value)}
-              value={max}
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap justify-center mt-4  ">
-          {FilterArray.length === 0 ? (
-            <>
-              <div className="m-4 p-4">
-                <h1 className="text-black">Loading...</h1>
-                 
-              </div>
-            </>
-          ) : (
-            FilterArray.map((item, index) => {
-              return (
-                <>
-                  <ProductCart
-                    key={index}
-                    id={item.id}
-                    name={item.title}
-                    price={item.price}
-                    image={item.image}
+      <div className="  mt-36 ">
+        
+        <Breadcrumb title={'Products'}/>
+        
+        <div className="container m-auto">
+          <div className="">
+
+            <div className="grid grid-cols-4 gap-5">
+              <div className="input_form"> 
+
+                <input
+                  type="search"
+                  className="outline-none  p-2 m-2"
+                  placeholder="Search Products"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+                <div className="grid grid-cols-2 gap-2">
+                  <input
+                    type="number"
+                    placeholder="MIN"
+                    className="outline-none w-20 p-2 m-2"
+                    onChange={(e) => setMin(e.target.value)}
+                    value={min}
                   />
-                </>
-              );
-            })
-          )}
+                  <input
+                    type="number"
+                    placeholder="MAX"
+                    className="outline-none w-20 p-2 m-2"
+                    onChange={(e) => setMax(e.target.value)}
+                    value={max}
+                  />
+                </div>
+              </div>
+
+              <div className="input_form pt-2"> 
+
+              <select name="" id="">
+                    <option value="">Màu</option>
+                    <option value="">Xanh</option>
+                    <option value="">Đen</option>
+                  </select>
+              </div>
+              <div className="input_form pt-2"> 
+
+                  <select name="" id="">
+                    <option value="">Brand</option>
+                    <option value="">Original</option>
+                    <option value="">Adidas</option>
+                  </select>
+              </div>
+              <div className="input_form pt-2"> 
+                  <select name="" id="">
+                    <option value="">Size</option>
+                    <option value="">S</option>
+                    <option value="">M</option>
+                  </select>
+              </div>
+            </div>
+            <div className="container mt-10">
+              <div className="flex-wrap gap-4 justify-center mt-4 grid-container">
+                {currentProducts.length === 0 ? (
+                  <div className="m-4 p-4">
+                    <h1 className="text-black">No products found.</h1>
+                  </div>
+                ) : (
+                  currentProducts.map((item, index) => (
+                    <ProductCart
+                      key={index}
+                      id={item.ProductId}
+                      name={item.ProductName}
+                      price={item.ProductPrice}
+                      image={item.ProductImage}
+                    />
+                  ))
+                )}
+              </div>
+              {/* Hiển thị nút chuyển trang */}
+              <div className="flex justify-center mb-10">
+                {FilterArray.length > productsPerPage && (
+                  <nav>
+                    <ul className="pagination">
+                      {Array.from({ length: Math.ceil(FilterArray.length / productsPerPage) }, (_, i) => (
+                        <li key={i} className="page-item flex items-center">
+                          <button onClick={() => paginate(i + 1)} className="page-link">
+                            {i + 1}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                )}
+              </div>
+            </div>
+          </div>
+
         </div>
-        {/* <button
-          className="bg-slate-500  text-white py-2 px-5 rounded-3xl m-5 w-40 backdrop-blur-xl  hover:bg-slate-300  transition ease-in-out delay-150"
-          onClick={() => setLoadMore(!LoadMore)}
-        >
-          {LoadMore ? "Show Less" : "Load More"}
-        </button> */}
       </div>
+      <Footer/>
     </>
   );
 };

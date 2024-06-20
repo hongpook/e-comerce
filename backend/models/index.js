@@ -1,16 +1,16 @@
 const User = require("./users/user");
 const cart = require("./carts/cart");
 const category = require("./categories/categ");
-const product = require("./products/product");
+const Product = require("./products/product");
 const Sequelize = require("../dbconnection/db");
 
 User.hasMany(cart, { onDelete: "CASCADE" });
 cart.belongsTo(User, { onDelete: "CASCADE" });
 
-category.hasMany(product, { onDelete: "CASCADE" });
-product.belongsTo(category, { onDelete: "CASCADE" });
+category.hasMany(Product, { onDelete: "CASCADE" });
+Product.belongsTo(category, { onDelete: "CASCADE" });
 
-product.belongsToMany(cart, {
+Product.belongsToMany(cart, {
   onDelete: "CASCADE",
   through: "Product_cart", // This will Juanction Table Name
   foreignKey: {
@@ -19,7 +19,7 @@ product.belongsToMany(cart, {
     unique: true,
   },
 });
-cart.belongsToMany(product, {
+cart.belongsToMany(Product, {
   onDelete: "CASCADE",
   through: "Product_cart", // This will Juanction Table Name
   foreignKey: {
@@ -31,7 +31,7 @@ cart.belongsToMany(product, {
 
 const model = Sequelize.models;
 
-module.exports = { model, Sequelize, User};
+module.exports = { model, Sequelize, User, Product};
 
 // const User = require('../models/users/user');
 

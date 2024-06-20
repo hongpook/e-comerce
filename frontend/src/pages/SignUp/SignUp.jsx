@@ -6,6 +6,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 //   onAuthStateChanged,
 // } from "firebase/auth";
 import axios from "axios";
+import "./style.scss";
+import Footer from "../../components/Footer/Footer.jsx";
 
 // import { auth } from "../../firebase/firebase-config";
 import authContext from "../../store/store";
@@ -78,112 +80,117 @@ function SignUp() {
 
   return (
     <>
-      <div className=" bg-slate-600 text-white text-center p-4 h-screen flex items-center max-lg:flex-col max-lg:h-auto">
-        <div className=" w-96">
-          <NavLink to="/">
-            <h1 className="backdrop-blur-sm bg-white/30 p-4 max-lg:m-4">
-              CRESCENDO
-            </h1>
-          </NavLink>
-        </div>
-        <div className=" flex flex-col">
-          <h1 className=" font-light text-center text-2xl">Sign Up</h1>
-          <Formik
-            className=" p-28 "
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-          >
-            <Form>
-              <div className="p-4 m-2">
-                <Field
-                  className="p-2 outline-none text-center text-black font-bold"
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                />
-                <p className=" text-red-500 test-sm">
-                  <ErrorMessage name="name" />
-                </p>
-              </div>
-              <div className="p-4 m-2">
-                <Field
-                  className="p-2 outline-none text-center text-black font-bold"
-                  type="number"
-                  name="number"
-                  placeholder="Number"
-                />
-                <p className=" text-red-500 test-sm">
-                  <ErrorMessage name="number" />
-                </p>
-              </div>
-              <div className="p-4 m-2">
-                <Field
-                  className="p-2 outline-none text-center text-black font-bold"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                />
-                <p className=" text-red-500 test-sm">
-                  <ErrorMessage name="email" />
-                </p>
-              </div>
-              <div className="p-4 m-2">
-                <Field
-                  className="p-2 outline-none text-center text-black font-bold"
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                />
-                <p className=" text-red-500 test-sm">
-                  <ErrorMessage name="password" />
-                </p>
-              </div>
-              <div className="p-4 m-2">
-                <Field
-                  className="p-2 outline-none text-center text-black font-bold"
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confrim password"
-                />
-                <p className=" text-red-500 test-sm">
-                  <ErrorMessage name="confirmPassword" />
-                </p>
-              </div>
-
-              <div>
-                <label>
+      <div className="register text-white text-center p-4 h-screen flex items-center max-lg:flex-col max-lg:h-auto mt-36">
+        <div className="container">
+          {/* <div className=" w-96">
+            <NavLink to="">
+              <h1 className="backdrop-blur-sm bg-white/30 p-4 max-lg:m-4">
+                Register
+              </h1>
+            </NavLink>
+          </div> */}
+          <div className=" flex flex-col">
+            <h1 className=" font-light text-center text-2xl">Sign Up</h1>
+            <Formik
+              className=" p-28 "
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
+              <Form>
+                
+                <div className="p-4 m-2">
                   <Field
                     className="p-2 outline-none text-center text-black font-bold"
-                    type="checkbox"
-                    name="termsAndConditions"
+                    type="text"
+                    name="name"
+                    placeholder="Name"
                   />
-                  <span className="ml-2">
-                    I accept the terms and conditions
-                  </span>
-                </label>
-                <p className=" text-red-500 test-sm">
-                  <ErrorMessage name="termsAndConditions" />
-                </p>
-              </div>
+                  <p className=" text-red-500 test-sm">
+                    <ErrorMessage name="name" />
+                  </p>
+                </div>
+                <div className="p-4 m-2">
+                  <Field
+                    className="p-2 outline-none text-center text-black font-bold"
+                    type="number"
+                    name="number"
+                    placeholder="Phone Number"
+                  />
+                  <p className=" text-red-500 test-sm">
+                    <ErrorMessage name="number" />
+                  </p>
+                </div>
+                <div className="p-4 m-2">
+                  <Field
+                    className="p-2 outline-none text-center text-black font-bold"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                  />
+                  <p className=" text-red-500 test-sm">
+                    <ErrorMessage name="email" />
+                  </p>
+                </div>
+                <div className="p-4 m-2">
+                  <Field
+                    className="p-2 outline-none text-center text-black font-bold"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                  <p className=" text-red-500 test-sm">
+                    <ErrorMessage name="password" />
+                  </p>
+                </div>
+                <div className="p-4 m-2">
+                  <Field
+                    className="p-2 outline-none text-center text-black font-bold"
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm password"
+                  />
+                  <p className=" text-red-500 test-sm">
+                    <ErrorMessage name="confirmPassword" />
+                  </p>
+                </div>
 
-              <button
-                type="submit"
-                className="p-2  px-6 border cursor-pointer text-center font-bold hover:bg-white hover:text-black"
-              >
-                Submit
-              </button>
-            </Form>
-          </Formik>
-          <p className="mt-12">
-            By clicking Sign Up You will Register, if you have already account.
-            then you Click to &nbsp;
-            <NavLink to="/login" className=" text-red-500">
-              Login
-            </NavLink>
-          </p>
+                <div>
+                  <label>
+                    <Field
+                      className="p-2 outline-none text-center text-black font-bold"
+                      type="checkbox"
+                      name="termsAndConditions"
+                    />
+                    <span className="ml-2">
+                      I accept the terms and conditions
+                    </span>
+                  </label>
+                  <p className=" text-red-500 test-sm">
+                    <ErrorMessage name="termsAndConditions" />
+                  </p>
+                </div>
+
+                <button
+                  type="submit"
+                  className="p-2  px-6 border cursor-pointer text-center font-bold hover:bg-white hover:text-black"
+                >
+                  Submit
+                </button>
+              </Form>
+            </Formik>
+            <p className="mt-12">
+              By clicking Sign Up You will Register, if you have already account.
+              then you Click to &nbsp;
+              <NavLink to="/login" className=" text-red-500">
+                Login
+              </NavLink>
+            </p>
+          </div>
+
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

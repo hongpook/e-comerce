@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import ProductCart from "../ProductCart";
 
 const Fproduct = () => {
   const [data, setData] = useState([]);
 
   const fetch = async () => {
-    const res = await axios.get(`https://fakestoreapi.com/products?limit=4`);
+    const res = await axios.get(`http://localhost:4000/products/allProduct?limit=4`);
     console.log(res.data);
     setData(res.data);
     setData(res.data);
@@ -17,9 +18,9 @@ const Fproduct = () => {
   }, []);
 
   return (
-    <div className=" container text-center p-20 ease-in-out m-4 ">
+    <div className=" text-center p-20  m-4 ">
       <h1 className="text-center text-4xl ">Featured Products</h1>
-      <div className="flex justify-center flex-wrap items-center p-8">
+      <div className="flex-wrap gap-4 justify-center mt-4 grid-container">
         {!data ? (
           <>
             <div className="m-4 p-4">
@@ -30,20 +31,28 @@ const Fproduct = () => {
           data.map((item, index) => {
             return (
               <>
-                <div className="backdrop-blur-sm bg-white/30 p-4 m-4" key={index}>
+                {/* <div className="backdrop-blur-sm bg-white/30 p-4 m-4" key={index}>
                   <div className="">
-                    <img src={item.image} alt="" width="150" className="" />
+                    <img src={item.ProductImage} alt="" width="150" className="" />
                   </div>
                   <div>
                     <h1 className="text-center text-black ">
-                      {item.title.slice(0, 10)}
+                      {item.ProductName.slice(0, 10)}
                     </h1>
-                    <h1 className="text-center text-blue-500">{item.price}</h1>
+                    <h1 className="text-center text-blue-500">{item.ProductPrice}</h1>
                     <h1 className="text-center font-bold text-blue-500">
                       Get 10% Off
                     </h1>
                   </div>
-                </div>
+                </div> */}
+                <ProductCart
+                    key={index}
+                    id={item.ProductId}
+                    name={item.ProductName}
+                    price={item.ProductPrice}
+                    image={item.ProductImage}
+                  />
+
               </>
             );
           })

@@ -1,1 +1,12 @@
- 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; /* Khoảng cách giữa các item */
+}
+
+.grid-item {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+    /* width: ; */
+}

@@ -1,0 +1,53 @@
+// <div className="w-full mt-36 bg-slate-100 p-4">
+    //   <div className="flex justify-between  m-6 p-8 rounded-2xl">
+    //     <div className="p-4 rounded-2xl backdrop-blur-sm bg-white/30  ">
+    //       <img
+    //         src={data.ProductImage}
+    //         alt=""
+    //         width="400px"
+    //         height="200px"
+    //         className="overflow-hidden mix-blend-multiply"
+    //       />
+    //     </div>
+    //     <div className="p-20 w-3/4 justify-center text-center ">
+    //       <h1 className=" font-bold text-xl">{data.ProductName}</h1>
+    //       <p className="text-lg ">{data.ProductDes?.slice(0, 100)}</p>
+    //       <h1 className="text-2xl  ">Category: {data.category}</h1>
+    //       <div className="">
+    //         <h1 className="text-2xl  ">Price: <FormatPrice price={data.ProductPrice}/></h1>
+    //       </div>
+    //       <div className=" mt-8">
+    //         <div className="">
+    //           <h1 className="text-2xl">Quantity</h1>
+    //           <FontAwesomeIcon
+    //             icon={faSquareMinus}
+    //             className=" cursor-pointer text-2xl"
+    //             onClick={dec}
+    //           />
+    //           <input
+    //             type="number"
+    //             className="outline-none p-2 m-2  w-10 text-center font-bold"
+    //             disabled
+    //             value={quantity}
+    //           />
+    //           <FontAwesomeIcon
+    //             icon={faSquarePlus}
+    //             className=" cursor-pointer text-2xl"
+    //             onClick={inc}
+    //           />
+    //         </div>
+    //       </div>
+    //       <div>
+    //         <button
+    //           className="bg-slate-500 ease-in rounded-2xl p-4 hover:bg-slate-300 hover:text-black mt-8"
+    //           onClick={AddToCartHandeler}
+    //         >
+    //           Add to Cart
+    //         </button>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <div>
+    //     <Outlet />
+    //   </div>
+    // </div>
