@@ -2,13 +2,20 @@ const User = require("./users/user");
 const cart = require("./carts/cart");
 const category = require("./categories/categ");
 const Product = require("./products/product");
+const Blog = require('./blogs/blogs')
 const Sequelize = require("../dbconnection/db");
+const UserAdmin = require('./userAdmin/userAdmin')
 
 User.hasMany(cart, { onDelete: "CASCADE" });
 cart.belongsTo(User, { onDelete: "CASCADE" });
 
+
+
+
 category.hasMany(Product, { onDelete: "CASCADE" });
 Product.belongsTo(category, { onDelete: "CASCADE" });
+
+
 
 Product.belongsToMany(cart, {
   onDelete: "CASCADE",
@@ -31,7 +38,7 @@ cart.belongsToMany(Product, {
 
 const model = Sequelize.models;
 
-module.exports = { model, Sequelize, User, Product};
+module.exports = { model, Sequelize, User, Product , Blog, UserAdmin};
 
 // const User = require('../models/users/user');
 

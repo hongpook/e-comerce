@@ -2,12 +2,16 @@ require("dotenv").config();
 
 module.exports = {
   "db": {
-  //   "database": process.env.database,
-  //   "username": process.env.username,
-  //   "password": process.env.password,
-  //  " port": process.env.port,
-  //   "host": process.env.host,
+  //   "database": process.env.PG_DATABASE,
+  //   "username": process.env.PG_USER,
+  //   "password": process.env.PG_PASSWORD,
+  //  " port": process.env.PG_PORT,
+  //   "host": process.env.PG_HOST,
   //   "dialect": process.env.dialect,
+
+    
+    
+    
 
   "database": "shop_management",
   "username": "postgres",

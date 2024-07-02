@@ -121,7 +121,7 @@ function Login() {
             </p> 
             <p className="">
               If you're a Admin? &nbsp;
-              <NavLink to="/signup" className=" text-red-500">
+              <NavLink to="http://localhost:3000/dashdarkX/authentication/login" className=" text-red-500">
                 Login for Admin
               </NavLink>
             </p>

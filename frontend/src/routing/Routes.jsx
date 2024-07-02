@@ -14,8 +14,10 @@ import ProtectedRoute from "./ProtectedRoute.jsx";
 import Checkout from "../pages/Checkout/Checkout.jsx";
 import Fproduct from "../components/Fproduct/Fproduct.jsx";
 import ProductList from "../components/productList/productList.jsx";
+import AddBlogPost from "../components/TestBlogs/index.jsx"
 
 import Blogs from "../pages/Blogs/Blogs.jsx";
+import Blogs2 from "../pages/Blogs/Blogs2.jsx";
 
 
 function MyRoutes() {
@@ -45,7 +47,7 @@ function MyRoutes() {
                 <Route path="3" element={<h1>elment 3</h1>} /> */}
           </Route>
           <Route path="about" element={<About />} />
-          <Route path="blogs" element={<Blogs />} />
+          <Route path="blogs" element={<Blogs2 />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="*" element={<ErrorPage />} />
           <Route path="login" element={<Login />} />
@@ -53,6 +55,7 @@ function MyRoutes() {
           
         </Route>
         <Route path="/test" element={<ProductList />} />
+        <Route path="/AddBlogPost" element={<AddBlogPost />} />
       </Routes>
     </>
   );
