@@ -56,7 +56,9 @@ function MyRoutes() {
         </Route>
         <Route path="/test" element={<ProductList />} />
         <Route path="/AddBlogPost" element={<AddBlogPost />} />
+        
       </Routes>
+      
     </>
   );
 }

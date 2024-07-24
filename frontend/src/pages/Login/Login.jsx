@@ -13,6 +13,8 @@ function Login() {
   const navigate = useNavigate();
   const authCtx = useContext(authContext);
 
+  
+
   const initialValues = {
     email: "",
     password: "",
@@ -27,6 +29,7 @@ function Login() {
     console.log("Form data", values);
     try {
       const data = {
+        id: values.id,
         email: values.email,
         password: values.password,
       };
@@ -34,16 +37,20 @@ function Login() {
       axios
         .post("http://localhost:4000/users/fatchuser", data)
         .then((response) => {
-          console.log(response);
+          console.log('checking user', response.data.accessToken.RetriveUpdate);
           alert(`Welcome back! ${response.data.email}`);
           authCtx.setToken(response.data.accessToken);
           localStorage.setItem("token", response.data.accessToken);
+          // const localUser =  window.localStorage.setItem('user', JSON.stringify(response))
+          localStorage.setItem('user', JSON.stringify(response.data.accessToken.RetriveUpdate))
+        
           navigate("/");
         })
         .catch((error) => {
           console.log("Error of", error);
         });
 
+        
       // alert(`Welcome back! ${user.user.email}`);
       // localStorage.setItem("token", user.user.accessToken);
       // authCtx.setToken(user.user.accessToken);

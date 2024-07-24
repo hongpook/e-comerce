@@ -37,11 +37,12 @@ const fatchUser = async (value) => {
       const res = compareHash(Pass);
       if (res) {
         const RetriveUpdate = {
+          id: user.id,
           email: user.email,
           password: user.password,
         };
         const token = await createToken(RetriveUpdate);
-        return token;
+        return {token, RetriveUpdate};
       } else {
         return "Password wrong!";
       }

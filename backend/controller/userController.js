@@ -6,7 +6,7 @@ const userService = require('../services/userServices');
 const getAllUsers = async (req, res) => {
   try {
     const users = await userService.getAllUsers();
-    return res.status(200).json({ users });
+    return res.status(200).json( users );
   } catch (error) {
     console.error('Lỗi khi lấy danh sách người dùng:', error);
     return res.status(500).json({ message: 'Lỗi máy chủ nội bộ' });

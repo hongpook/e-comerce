@@ -5,16 +5,27 @@ const Product = require("./products/product");
 const Blog = require('./blogs/blogs')
 const Sequelize = require("../dbconnection/db");
 const UserAdmin = require('./userAdmin/userAdmin')
+const Comments = require("./comment/comments")
 
 User.hasMany(cart, { onDelete: "CASCADE" });
 cart.belongsTo(User, { onDelete: "CASCADE" });
 
+User.hasMany(Comments, {onDelete: "CASCADE"});
 
 
 
 category.hasMany(Product, { onDelete: "CASCADE" });
 Product.belongsTo(category, { onDelete: "CASCADE" });
 
+Comments.belongsToMany(Blog, {
+  onDelete: "CASCADE",
+  through: "Blog", // This will Juanction Table Name
+  foreignKey: {
+    name: "IDBlog", //
+    allowNull: false,
+    unique: true,
+  },
+});
 
 
 Product.belongsToMany(cart, {
@@ -38,7 +49,7 @@ cart.belongsToMany(Product, {
 
 const model = Sequelize.models;
 
-module.exports = { model, Sequelize, User, Product , Blog, UserAdmin};
+module.exports = { model, Sequelize, User, Product , Blog, UserAdmin, Comments};
 
 // const User = require('../models/users/user');
 

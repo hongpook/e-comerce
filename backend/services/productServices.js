@@ -2,13 +2,10 @@ const { model, Sequelize, Product } = require("../models/index");
 
 
 class ProductService {
-  async createProduct(data) {
-    try {
-      const product = await Product.create(data);
-      return product;
-    } catch (error) {
-      throw error;
-    }
+
+  async  createProduct(data) {
+    const product = new Product(data);
+    return await product.save();
   }
 
   async getProductById(productId) {

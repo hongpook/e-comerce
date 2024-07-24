@@ -18,6 +18,8 @@ function index() {
   const authCtx = useContext(authContext);
   console.log("authCtx", authCtx);
 
+  const user = JSON.parse(window?.localStorage?.getItem("user"))
+
   const cartLenght = useSelector((state) => state.cart.length);
   console.log(cartLenght);
 
@@ -65,6 +67,7 @@ function index() {
                                   <select>
                                       <option value="">USD</option>
                                       <option value="">AUD</option>
+                                      {/* <option value="">{user.email}</option> */}
                                   </select>
                                   
                               </div>

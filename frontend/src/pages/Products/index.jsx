@@ -10,7 +10,7 @@ import Footer from "../../components/Footer/Footer.jsx";
 const Products = () => {
   const [product, setProduct] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(2); // Số lượng sản phẩm trên mỗi trang
+  const [productsPerPage] = useState(4); // Số lượng sản phẩm trên mỗi trang
   const [search, setSearch] = useState("");
   const [FilterArray, setFilterArray] = useState([]);
   const [min, setMin] = useState("");
