@@ -53,7 +53,8 @@ function ProductDetails() {
       return;
     } else {
       if (cartSelecter.cart.find((item) => item.id === data.id)) {
-       alert("already added to cart or if you want to add more quantity then go to cart and update quantity");
+        alert("added to cart successfully, go to cart to checkout");
+        dispatch(Add(item));
         return;
       } else {
         dispatch(Add(item));

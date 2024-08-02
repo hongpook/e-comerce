@@ -12,7 +12,20 @@ cart.belongsTo(User, { onDelete: "CASCADE" });
 
 User.hasMany(Comments, {onDelete: "CASCADE"});
 
+// Blog.hasMany(Comments, {
+//   foreignKey: 'IDBlog',
+//   as: 'comments',
+//   onDelete: 'CASCADE'
+// });
 
+// Comments.belongsTo(Blog, {
+//   foreignKey: 'IDBlog',
+//   as: 'blog'
+// });
+// Comments.belongsTo(User, {
+//   foreignKey: 'IDUser',
+//   as: 'user'
+// });
 
 category.hasMany(Product, { onDelete: "CASCADE" });
 Product.belongsTo(category, { onDelete: "CASCADE" });
